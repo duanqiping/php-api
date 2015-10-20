@@ -1,0 +1,19 @@
+
+#deny from all
+#Options indexes
+DirectoryIndex abc.html news.php
+#errorDocument 404 /aa/404.html
+
+<IfModule rewrite_module>
+
+RewriteEngine On
+RewriteRule news-([a-zA-Z]+)-id(\d+)\.html$ news.php?type=$1&id=$2
+#增加规则
+RewriteRule index\/login index.php?c=index&a=login
+RewriteRule ([a-zA-Z_]+)\/([a-zA-Z_]+) index.php?c=$1&a=$2
+#如果请求的不是一个文件
+RewriteCond %{REQUEST_FILENAME} -!f
+#并且不是一个目录
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ccc.html index.html
+</IfModule>

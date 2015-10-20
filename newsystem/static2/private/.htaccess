@@ -1,0 +1,15 @@
+#order deny,allow
+#deny from all
+#allow from 127.0.0.1
+
+<ifModule rewrite_module>
+RewriteEngine On
+
+#你怎么知道，这个请求就是本网站发来的  （外网站请求 带个Referer请求头）
+#下面一行代码相当于一个if语句
+RewriteCond %{HTTP_REFERER} !http://www.myreg1.com
+#如果你请求的是一个jpg图片，就forbidden
+RewriteRule .*\.jpg -|F|
+RewriteRule .*\.js -|F|
+
+</ifModule>
